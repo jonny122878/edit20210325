@@ -49,7 +49,33 @@ namespace edit20210325.Controllers
             
             return View();
         }
-        
+
+        public IActionResult LoginByWinForm([FromQuery] LoginViewModel loginViewModel)
+        {
+            var validLoginViewModel = new ValidLoginViewModel {Succeeded = false };
+
+            var isLogin = true;
+            if (isLogin)
+            {
+                var jsonLogErr = JsonConvert.SerializeObject(validLoginViewModel);
+                return new JsonResult(jsonLogErr);
+            }
+            //
+            //where user id and time > 0
+            
+            //where user id and createtime add period comaprer > current datetime now
+            
+
+
+            //union times and peroid
+            
+            //except authority false          
+
+            var json = JsonConvert.SerializeObject(validLoginViewModel);
+            return new JsonResult(json);
+        }
+
+
         public IActionResult TestAPI()
         {
 
