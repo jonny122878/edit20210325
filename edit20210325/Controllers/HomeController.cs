@@ -21,10 +21,11 @@ namespace edit20210325.Controllers
         /// 讀取組態用
         /// </summary>
         private readonly IConfiguration config;
-
+        private readonly CASE20210405Context _dbContext;
         public HomeController(IConfiguration config)
         {
             this.config = config;
+            this._dbContext = new CASE20210405Context();
         }
 
         public IActionResult JudgeIndex()
@@ -52,9 +53,13 @@ namespace edit20210325.Controllers
 
         public IActionResult LoginByWinForm([FromQuery] LoginViewModel loginViewModel)
         {
-            var validLoginViewModel = new ValidLoginViewModel {Succeeded = false };
 
-            var isLogin = true;
+            var isLogin = this._dbContext.MemberModels.Any(r => 
+            r.MemberGmail == loginViewModel.Email &&
+            r.MemberPassword == loginViewModel.Password
+            );
+
+            var validLoginViewModel = new ValidLoginViewModel { Succeeded = false };
             if (isLogin)
             {
                 var jsonLogErr = JsonConvert.SerializeObject(validLoginViewModel);
@@ -70,6 +75,9 @@ namespace edit20210325.Controllers
             //union times and peroid
             
             //except authority false          
+
+
+            //write log
 
             var json = JsonConvert.SerializeObject(validLoginViewModel);
             return new JsonResult(json);
