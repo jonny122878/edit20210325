@@ -45,6 +45,18 @@ namespace edit20210325.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Chinese_Taiwan_Stroke_CI_AS");
+            modelBuilder.Entity<MemberCashInModel>().HasKey(table => new
+            {
+                table.MemberCashInMemberGmail,
+                table.MemberCashInOrderID
+            });
+
+            modelBuilder.Entity<SalesOrderModel>().HasKey(table => new
+            {
+                table.SalesOrderMemberGmail,
+                table.SalesOrderOrderID,
+                table.SalesOrderItem,
+            });
 
             OnModelCreatingPartial(modelBuilder);
         }

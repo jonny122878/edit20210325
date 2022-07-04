@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="zh-tw">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="author" content="topefficiencywork">
     <meta name="generator" content="Hugo 0.80.0">
     <title>@ViewData["Title"]</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/carousel/">
@@ -105,167 +112,209 @@
         </div>
     </div>
     <header>
-        <nav class="navbar navbar-expand-lg  justify-content-sm-start fixed-top navbar-dark bg-primary">
-            <a style="font-size: 24px;" class="navbar-brand order-0 order-lg-0 ml-lg-0 ml-1 mr-auto" asp-controller="Home" asp-action="JudgeIndex">
-                <i class="fas fa-home"></i>
-                <span style="font-family: 'Zen Dots', cursive;"> excelhelperx</span>
-            </a>
-            <button style="font-size: 24px;" class="navbar-toggler align-self-start mt-2"
-                    type="button">
-                <i class="fas fa-th-list"></i>
-            </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="font-family: 'Zen Dots', cursive;" asp-controller="Home" asp-action="JudgeIndex"><i class="fas fa-home"></i>Top Efficiency Work</a>
 
-            <div style="width:50%;top:17px " class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-end bg-primary p-3 p-lg-0 mt-5 mt-lg-0 mobileMenu onRight"
-                 id="navbarSupportedContent">
+                <button style="font-size: 24px;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-th-list"></i>
+                </button>
 
-                <ul class="navbar-nav align-self-stretch">
-                    @if ((string)ViewData["ＰageCtrl"] == "1")
-                    {
-                        <li class="nav-item active">
-                            <a style="color:aquamarine; font-size:18px;" class="nav-link" asp-controller="TeamInfo" asp-action="JudgeIndex">團隊介紹</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a style="color:antiquewhite;font-size:18px;" class="nav-link " asp-controller="TeamInfo" asp-action="JudgeIndex">團隊介紹</a>
-                        </li>
-                    }
-                    @if ((string)ViewData["ＰageCtrl"] == "2")
-                    {
-                        <li class="nav-item active">
-                            <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="ServiceItem" asp-action="JudgeIndex">服務項目</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a style="color:antiquewhite;font-size:18px;" class="nav-link " asp-controller="ServiceItem" asp-action="JudgeIndex">服務項目</a>
-                        </li>
-                    }
-                    @if ((string)ViewData["ＰageCtrl"] == "3")
-                    {
-                        <li class="nav-item active">
-                            <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="ChargeItems" asp-action="JudgeIndex">收費方式</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item ">
-                            <a style="color:antiquewhite;font-size:18px;" class="nav-link " asp-controller="ChargeItems" asp-action="JudgeIndex">收費方式</a>
-                        </li>
-                    }
-                    @if ((string)ViewData["ＰageCtrl"] == "4")
-                    {
-                        <li class="nav-item active">
-                            <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="ExcelTeach" asp-action="JudgeIndex">Excel教學區</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item">
-                            <a style="color:antiquewhite;font-size:18px;" class="nav-link " asp-controller="ExcelTeach" asp-action="JudgeIndex">Excel教學區</a>
-                        </li>
-                    }
-
-
-                    @{
-                        var MemberName = Context.User.Claims.Count() == 0 ? "註冊/登入" : Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Name).Value;
-                        var pictureIcon = Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Uri) == null ?  null:Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Uri);
-                        var LoginState = Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Actor) ==null ? "false" : Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Actor).Value;
+                <div style="width:50%;top:8px;" class="collapse navbar-collapse d-flex flex-column flex-lg-row flex-xl-row justify-content-lg-end bg-primary p-3 p-lg-0 mt-5 mt-lg-0 mobileMenu onRight"
+                     id="navbarSupportedContent">
+                   
+                    <ul class="navbar-nav align-self-stretch">
+                        @if ((string)ViewData["ＰageCtrl"] == "1")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine; font-size:18px;" class="nav-link" asp-controller="ServiceCharge" asp-action="JudgeIndex">服務收費</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF; font-size:18px;" class="nav-link " asp-controller="ServiceCharge" asp-action="JudgeIndex">服務收費</a>
+                            </li>
+                        }
+                        @if ((string)ViewData["ＰageCtrl"] == "2")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine; font-size:18px;" class="nav-link " asp-controller="Example" asp-action="JudgeIndex">實際案例</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link " asp-controller="Example" asp-action="JudgeIndex">實際案例</a>
+                            </li>
+                        }
+                        @if ((string)ViewData["ＰageCtrl"] == "3")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="ServiceProcess" asp-action="JudgeIndex">服務流程</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link " asp-controller="ServiceProcess" asp-action="JudgeIndex">服務流程</a>
+                            </li>
+                        }
+                        @if ((string)ViewData["ＰageCtrl"] == "4")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="FAQ" asp-action="JudgeIndex">常見問題</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link " asp-controller="FAQ" asp-action="JudgeIndex">常見問題</a>
+                            </li>
+                        }
+                         @if ((string)ViewData["ＰageCtrl"] == "5")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine;font-size:18px;" class="nav-link " asp-controller="AboutUs" asp-action="JudgeIndex">關於我們</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link " asp-controller="AboutUs" asp-action="JudgeIndex">關於我們</a>
+                            </li>
                         }
 
-                    @if (!MemberName.Equals("註冊/登入") && LoginState.Equals("true"))
-                    {
-                <li class="nav-item dropdown active">
-                    @if ((string)ViewData["ＰageCtrl"] == "5")
-                    {
-                        <a style="color:aquamarine;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            @if (pictureIcon != null)
-                            {
-                                <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
-                            }
-                            @MemberName
-                        </a>
-                    }
-                    else
-                    {
-                        <a style="color:antiquewhite;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            @if (pictureIcon != null)
-                            {
-                                <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
-                            }
-                            @MemberName
-                        </a>
-                    }
 
-                <div class="dropdown-menu">
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="MemberDataBase" asp-controller="MemberInfo">會員基本資料</a>
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="MemberProductList" asp-controller="MemberInfo">已購買商品明細</a>
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="MemberProgressProductList" asp-controller="MemberInfo">訂製商品狀況</a>
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="SaveCash" asp-controller="MemberInfo">金幣儲值</a>
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="Question" asp-controller="MemberInfo">常見Q&A</a>
-                    <a style="font-size:14px;" class="dropdown-item " asp-action="DownLoadPage" asp-controller="MemberInfo">下載專區</a>
-                    <div class="dropdown-divider"></div>
-                    <a style="font-size:14px;" class="dropdown-item " onclick="logout()">登出</a>
-                </div>
-                </li>
-                    }
-                    else if (!MemberName.Equals("註冊/登入") && LoginState.Equals("false"))
-                    {
-                <li class="nav-item dropdown ">
-
-                    @if ((string)ViewData["ＰageCtrl"] == "5")
-                    {
-                        <a style="color:aquamarine;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            @if (pictureIcon != null)
-                            {
-                                <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
+                        @{
+                            var MemberName = Context.User.Claims.Count() == 0 ? "登入" : Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Name).Value;
+                            var pictureIcon = Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Uri) == null ?  null:Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Uri);
+                            var LoginState = Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Actor) ==null ? "false" : Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Actor).Value;
                             }
-                            @MemberName
-                        </a>
-                    }
-                    else
-                    {
-                        <a style="color:antiquewhite;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            @if (pictureIcon != null)
-                            {
-                                <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
-                            }
-                            @MemberName
-                        </a>
-                    }
 
-                    <div class="dropdown-menu">
-                        <a style="font-size:14px;" class="dropdown-item " asp-action="MemberRegister" asp-controller="MemberInfo">註冊會員帳號</a>
-                        <a style="font-size:14px;" class="dropdown-item " onclick="logout()">登出</a>
-                    </div>
-                </li>
-                    }
-                    else
-                    {
-                        <li class="nav-item ">
-                            <a style="color:antiquewhite;font-size:18px;" class="nav-link" onclick="login()">
+                        @if (!MemberName.Equals("登入") && LoginState.Equals("true"))
+                        {
+                    <li class="nav-item dropdown active">
+                        @if ((string)ViewData["ＰageCtrl"] == "6")
+                        {
+                            <a style="color:aquamarine;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 @if (pictureIcon != null)
                                 {
-                                    <img src="@pictureIcon.Value" style="width: 20px; border-radius: 50%; ">
+                                    <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
                                 }
                                 @MemberName
                             </a>
-                        </li>
-                    }
-                    @{
-                        //@Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Name).Value
-                    }
+                        }
+                        else
+                        {
+                            <a style="color:#FFFFFF;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (pictureIcon != null)
+                                {
+                                    <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
+                                }
+                                @MemberName
+                            </a>
+                        }
 
 
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <!--   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                     -->
-                </form>
-            </div>
+
+
+
+                    <div class="dropdown-menu">
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="MemberDataBase" asp-controller="MemberInfo">會員基本資料</a>
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="MemberProductList" asp-controller="MemberInfo">已購買商品明細</a>
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="MemberProgressProductList" asp-controller="MemberInfo">訂製商品狀況</a>
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="SaveCash" asp-controller="MemberInfo">金幣儲值</a>
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="Question" asp-controller="MemberInfo">常見Q&A</a>
+                        <a style="font-size:14px;" class="dropdown-item " asp-action="DownLoadPage" asp-controller="MemberInfo">下載專區</a>
+                        <div class="dropdown-divider"></div>
+                        <a style="font-size:14px;" class="dropdown-item " onclick="logout()">登出</a>
+                    </div>
+                    </li>
+                        }
+                        else if (!MemberName.Equals("登入") && LoginState.Equals("false"))
+                        {
+                    <li class="nav-item dropdown ">
+
+                        @if ((string)ViewData["ＰageCtrl"] == "6")
+                        {
+                            <a style="color:aquamarine;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (pictureIcon != null)
+                                {
+                                    <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
+                                }
+                                @MemberName
+                            </a>
+                        }
+                        else
+                        {
+                            <a style="color:#FFFFFF;font-size:18px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (pictureIcon != null)
+                                {
+                                    <img src="@pictureIcon.Value" style="width:20px;border-radius: 50%;">
+                                }
+                                @MemberName
+                            </a>
+                        }
+
+                        <div class="dropdown-menu">
+                            <a style="font-size:14px;" class="dropdown-item " asp-action="MemberRegister" asp-controller="MemberInfo">註冊會員帳號</a>
+                            <a style="font-size:14px;" class="dropdown-item " onclick="logout()">登出</a>
+                        </div>
+                    </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item ">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link" onclick="login()">
+                                    @if (pictureIcon != null)
+                                    {
+                                        <img src="@pictureIcon.Value" style="width: 20px; border-radius: 50%; ">
+                                    }
+                                    @MemberName
+                                </a>
+                            </li>
+                        }
+                        @{
+                            //@Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.Name).Value
+                        }
+                        @if ((string)ViewData["ＰageCtrl"] == "7")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine; font-size:18px; border-style:solid; border-width:2px; border-color:#FFFFFF;" class="nav-link rounded-pill px-4" asp-controller="ConsultNow" asp-action="JudgeIndex">立即諮詢</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF;font-size:18px; border-style:solid; border-width:2px; border-color:#FFFFFF;" class="nav-link rounded-pill px-4" asp-controller="ConsultNow" asp-action="JudgeIndex">立即諮詢</a>
+                            </li>
+                        }
+                    
+                        @if ((string)ViewData["ＰageCtrl"] == "8")
+                        {
+                            <li class="nav-item active">
+                                <a style="color:aquamarine; font-size:18px;" class="nav-link" asp-controller="Layout" asp-action="JudgeIndex"></a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a style="color:#FFFFFF;font-size:18px;" class="nav-link " asp-controller="Layout" asp-action="JudgeIndex"></a>
+                            </li>
+                        }
+
+
+
+
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <!--   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                         -->
+                    </form>
+                  </div>
+              </div>
         </nav>
         <div class="overlay"></div>
     </header>
@@ -273,20 +322,50 @@
         @RenderBody()
     </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="row">
-            <div id="showtime" class="container col-sm-4 ">
-            </div>
-            <div class="col-sm-5">
-                <p>
-                    @("gmail：excelhelperx@gmail.com")<br>
-                    @("官方line@：excelhelperx")
-                </p>
 
-            </div>
+    <div class="jumbotron sticky-bottom">
+        <div class="container">
+            <footer class="row">
+              <div class="col-12 mx-auto col-sm-12 col-md-12 col-lg-5">
+                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                    <img src=~/image/logo.png width="100%" height="100%" /><use xlink:href="#bootstrap"/>
+                </a>
+                <p class="text-muted">Copyright&copy; 早點下班. All rights reserved</p>
+              </div>
+                
+              <div class="col-6 col-sm col-md col-lg">
+                <h5 class="font-weight-bold">關於公司</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a asp-controller="AboutUs" asp-action="JudgeIndex" class="nav-link p-0 text-muted">關於我們</a></li>
+                  <li class="nav-item mb-2"><a asp-controller="FAQ" asp-action="JudgeIndex" class="nav-link p-0 text-muted">常見問題</a></li>
+                  <li class="nav-item mb-2"><a asp-controller="ServiceCharge" asp-action="JudgeIndex" class="nav-link p-0 text-muted">服務收費</a></li>
+                </ul>
+              </div>
+        
+              <div class="col-6 col-sm col-md col-lg">
+                <h5 class="font-weight-bold">實際案例</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a asp-controller="Example" asp-action="Index" asp-fragment="example1" class="nav-link p-0 text-muted">情境一</a></li>
+                  <li class="nav-item mb-2"><a asp-controller="Example" asp-action="Index" asp-fragment="example2" class="nav-link p-0 text-muted">情境二</a></li>
+                  <li class="nav-item mb-2"><a asp-controller="Example" asp-action="Index" asp-fragment="example3" class="nav-link p-0 text-muted">情境三</a></li>
+                </ul>
+              </div>
+
+              <div class="col-12 col-sm col-md col-lg">
+                <h5 class="font-weight-bold">聯繫我們</h5>
+                <ul class="nav flex-column">
+                  <li class="nav-item mb-2"><a href="javascript:void(0);" class="nav-link p-0 text-muted">Email:service@@topefficiencywork.tw</a></li>
+                  <li class="nav-item mb-2"><a href="https://lin.ee/nDWUFNh" class="nav-link p-0 text-muted">LINE:搜尋@@topefficiencywork</a></li>
+                  <li class="nav-item mb-2"><a class="btn btn-success btn-lg" href="https://lin.ee/nDWUFNh" role="button">加入LINE好友</a></li>
+                </ul>
+              </div>
+            </footer>
         </div>
+    </div>
 
-    </footer>
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -295,5 +374,7 @@
     <script src="~/js/function.js" asp-append-version="true"></script>
     <script src="~/js/VideoFunc.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+
 </body>
 </html>

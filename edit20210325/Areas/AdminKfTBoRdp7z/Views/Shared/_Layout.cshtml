@@ -80,7 +80,7 @@
                         }
                         else
                         {
-                            <a style="color:antiquewhite;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a style="color:#FFFFFF;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-book"></i>訂單管理
                             </a>
                         }
@@ -99,7 +99,7 @@
                         }
                         else
                         {
-                            <a style="color:antiquewhite;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a style="color:#FFFFFF;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-address-book"></i>會員管理
                             </a>
                         }
@@ -121,7 +121,7 @@
                         }
                         else
                         {
-                            <a style="color:antiquewhite;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a style="color:#FFFFFF;font-size:14px;" class="nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-play-circle"></i>影片管理
                             </a>
                         }
@@ -140,11 +140,11 @@
                     else
                     {
                         <li class="nav-item ">
-                            <a style="color:antiquewhite;font-size:14px;" class="nav-link divASize" asp-controller="Manager" asp-action="Index"><i class="fas fa-id-card"></i>管理員設定</a>
+                            <a style="color:#FFFFFF;font-size:14px;" class="nav-link divASize" asp-controller="Manager" asp-action="Index"><i class="fas fa-id-card"></i>管理員設定</a>
                         </li>
                     }
                     &ensp;
-                    @if ((string)ViewData["ＰageCtrl"] == "5")
+                    @if ((string)ViewData["ＰageCtrl"] == "6")
                     {
                         <li class="nav-item active">
 
@@ -154,7 +154,7 @@
                     else
                     {
                         <li class="nav-item ">
-                            <a style="color:antiquewhite;font-size:14px;" class="nav-link divASize" asp-controller="Login" asp-action="Logout">
+                            <a style="color:#FFFFFF;font-size:14px;" class="nav-link divASize" asp-controller="Login" asp-action="Logout">
                                 <i class="fas fa-user"></i> @Context.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value @("登出")
                             </a>
                         </li>

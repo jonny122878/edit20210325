@@ -3,17 +3,28 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <NoWin32Manifest>true</NoWin32Manifest>
-    <UserSecretsId>a5dcce95-b370-4f69-b03e-2ea15b0c65be</UserSecretsId>
+    <SkipFunctionsDepsCopy>true</SkipFunctionsDepsCopy>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ReportFomr\**" />
+    <Content Remove="Views\ReportFomr\**" />
+    <EmbeddedResource Remove="Views\ReportFomr\**" />
+    <None Remove="Views\ReportFomr\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="6.0.6" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace edit20210325.Controllers
 {
-    public class TeamInfoController : Controller
+    public class ConsultNowController : Controller
     {
         public IActionResult JudgeIndex()
         {

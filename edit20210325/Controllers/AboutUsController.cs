@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace edit20210325.Controllers
 {
-    public class ExcelTeachController : Controller
+    public class AboutUsController : Controller
     {
-
         public IActionResult JudgeIndex()
         {
             var nemeData = HttpContext.User.Claims.FirstOrDefault(m => m.Type == System.Security.Claims.ClaimTypes.NameIdentifier);
