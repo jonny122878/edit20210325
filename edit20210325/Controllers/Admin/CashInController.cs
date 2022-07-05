@@ -257,6 +257,7 @@ namespace edit20210325.Controllers
         {
             var db = new CASE20210405Context();
             List<MemberModel> ModelList = db.MemberModels.ToList();
+            //回傳Json讓其Prase
             ViewBag.ModelList = ModelList;
             return View();
         }

@@ -7,6 +7,7 @@ using edit20210325.Function;
 using edit20210325.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -19,14 +20,51 @@ namespace edit20210325.Controllers
         /// 讀取組態用
         /// </summary>
         private readonly IConfiguration config;
-        public LoginController(IConfiguration config)
+        private readonly IWebHostEnvironment env;
+
+        public LoginController(IConfiguration config, IWebHostEnvironment env)
         {
             this.config = config;
+            this.env = env;
         }
-
-        public IActionResult Index()
+        
+        public async Task<IActionResult> Index()
         {
-            return View();
+            if (this.env.EnvironmentName == "Development")
+            {
+                var inputUsername = "toper";
+                var inputPassword = "00007115";
+                var db = new CASE20210405Context();
+                List<ManagerModel> lsModel = db.ManagerModels.ToList();
+                ManagerModel it = lsModel.Where(c => c.ManagerUser == inputUsername).FirstOrDefault();
+                //從自己的DB檢查帳&密，輸入是否正確
+                if (it == null || (inputUsername == it.ManagerUser && inputPassword == it.ManagerPassword) == false)
+                {
+                    //帳&密不正確
+                    ViewBag.errMsg = "帳號或密碼輸入錯誤!!";
+                    return View();//流程不往下執行
+                }
+
+                //帳密都輸入正確，ASP.net Core要多寫三行程式碼 
+                //Claim[] claims = new[] { new Claim("Account", inputUsername) }; //取名Account，在登入後的頁面，讀取登入者的帳號會用得到，自己先記在大腦
+                Claim[] claims = new[] { new Claim(ClaimTypes.NameIdentifier, it.ManagerName) };
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);//Scheme必填
+                ClaimsPrincipal principal = new ClaimsPrincipal(claimsIdentity);
+                double loginExpireMinute = this.config.GetValue<double>("LoginExpireMinute");
+                await HttpContext.SignInAsync(principal,
+                    new AuthenticationProperties()
+                    {
+                        IsPersistent = false, //IsPersistent = false，瀏覽器關閉即刻登出
+                                              //用戶頁面停留太久，逾期時間，在此設定的話會覆蓋Startup.cs裡的逾期設定
+                    /* ExpiresUtc = DateTime.Now.AddMinutes(loginExpireMinute) */
+                    });
+
+                return RedirectToAction("Create", "CashIn");//到登入後的第一頁，自行決定
+            }
+            else
+            {
+                return View();
+            }            
         }
 
         /// <summary>

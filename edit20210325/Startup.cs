@@ -82,18 +82,21 @@ namespace edit20210325
             app.UseAuthentication();
             app.UseAuthorization();//Controller、Action才能加上 [Authorize] 屬性
 
+
             app.UseEndpoints(endpoints =>
-            {             
+            {
                 endpoints.MapAreaControllerRoute(
                 name: ProjectSet.AdminName,
                 areaName: ProjectSet.AdminName,
-                pattern: ProjectSet.AdminName+"/{controller=Login}/{action=Index}/{id?}");
+                pattern: ProjectSet.AdminName + "/{controller=Login}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=JudgeIndex}/{id?}");
 
             });
+            
+            
         }
     }
 }
