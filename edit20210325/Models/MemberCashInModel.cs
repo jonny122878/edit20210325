@@ -23,16 +23,37 @@ namespace edit20210325.Models
         [DisplayName("訂單編號")]
         public string MemberCashInOrderID { get; set; }
 
+        [DisplayName("訂製商品")]
+        [Required(ErrorMessage = "訂製商品不能為空白")]
+        public string MemberCashInName { get; set; }
+
         [DisplayName("商品版本")]
+        [Required(ErrorMessage = "商品版本不能為空白")]
         public string MemberCashInVersion { get; set; }
 
         [RegularExpression("^[0-9]*$", ErrorMessage = "已付訂金欄位錯誤")]
+        [Required(ErrorMessage = "訂金不能為空白")]
         [DisplayName("已付訂金")]
         public int MemberCashInCash { get; set; }
 
+        [DisplayName("訂單狀態")]
+        public string OrderState { get; set; }
 
-        [DisplayName("訂製商品")]
-        public string MemberCashInName { get; set; }
+        [DataType(DataType.Date, ErrorMessage = "日期錯誤")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayName("建立日期")]
+        public DateTime MemberCashInCrtDate { get; set; }
+
+
+        [DataType(DataType.Date, ErrorMessage = "日期錯誤")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
+        [DisplayName("最後變更日期")]
+        public DateTime MemberCashInChgDate { get; set; }
+
+
+
+
+        #region 暫時用不到欄位
 
         [DisplayName("進度說明")]
         public string MemberCashInRemarks { get; set; }
@@ -46,28 +67,13 @@ namespace edit20210325.Models
         [DisplayName("商家備註")]
         public string MemberCashInSpace3 { get; set; }
 
-        [DisplayName("訂單狀態")]
-        public string OrderState { get; set; }
-
-
-        [DataType(DataType.Date, ErrorMessage = "日期錯誤")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
-        [DisplayName("建立日期")]
-        public DateTime MemberCashInCrtDate { get; set; }
-
-
-        [DataType(DataType.Date, ErrorMessage = "日期錯誤")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
-        [DisplayName("最後變更日期")]
-        public DateTime MemberCashInChgDate { get; set; }
-
-        //用不到後續要delete
-
         [DisplayName("編號")]
         public Guid Id { get; set; }
 
-
         [DisplayName("會員帳號")]
         public string MemberCashInId { get; set; }
+
+        #endregion
+
     }
 }

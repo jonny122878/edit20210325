@@ -257,8 +257,18 @@ namespace edit20210325.Controllers
         {
             var db = new CASE20210405Context();
             List<MemberModel> ModelList = db.MemberModels.ToList();
-            //回傳Json讓其Prase
+
+            //會員訂單取得最大訂單編號 +1 List<KeyValuePair> => mail,order
+            //會員LEFT JOIN NULL補齊為0001
+            //回傳Json讓其Prase KeyValuePair userID,Tuple<gmail,order>
+            //回傳Json
             ViewBag.ModelList = ModelList;
+
+            ViewBag.Version = "1.0.0.0";
+            ViewBag.CashIn = "0";
+            ViewBag.OrderState = "0";
+            ViewBag.Date = DateTime.Now.ToString("yyyy-MM-dd");
+
             return View();
         }
         [HttpPost]
